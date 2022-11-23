@@ -1,24 +1,32 @@
 import React, { useRef, useState, useCallback, useEffect } from 'react';
 import './App.css';
-
-interface CanvasProps {
-  width: number;
-  height: number;
-}
+import test1 from './images/test1.jpeg';
+import test2 from './images/test2.jpeg';
+import test3 from './images/test3.jpeg';
+import test4 from './images/test4.jpeg';
 
 interface Coordinate {
   x: number;
   y: number;
 }
 
-const App = ({ width, height }: CanvasProps) => {
+const images: string[] = [test1, test2, test3, test4]
+
+const App = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const [mousePosition, setMousePosition] = useState<Coordinate | undefined>(
     undefined,
   );
   const [isPainting, setIsPainting] = useState(false);
-  const [erasePercent, setErasePersent] = useState<number>(0);
+  const [width, setWidth] = useState<number>(window.innerWidth);
+  const [height, setHeight] = useState<number>(window.innerWidth);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const handleResize = () => {
+    console.log(window.innerWidth);
+    setWidth(window.innerWidth);
+    setHeight(window.innerHeight);
+  }
 
   const getCoordinates = (event: MouseEvent): Coordinate | undefined => {
     if (!canvasRef.current) {
@@ -103,33 +111,81 @@ const App = ({ width, height }: CanvasProps) => {
       canvas.removeEventListener('mouseleave', exitPaint);
     };
   }, [startPaint, paint, exitPaint]);
-  console.log(window.innerWidth)
+
+  const handleChangeImage = useCallback(() => {
+    let inter: any = null;
+    let i = 1
+
+    inter = setInterval(() => {
+      if (!canvasRef.current) {
+        return;
+      }
+      const canvas: HTMLCanvasElement = canvasRef.current;
+      const context = canvas.getContext('2d');
+      if (context) {
+        context.globalCompositeOperation = 'source-over';
+
+        context.save();
+        context.beginPath()
+        context.clearRect(0,0,width,height)
+        context.rect(0,0,width,height)
+        context.fillStyle = `rgba(255,255,255,${i})`
+        context.fill()
+        context.closePath()
+        context.restore()                 
+        
+        if(i <= 0) {
+            clearInterval(inter)
+            inter = null
+        }
+
+      }
+      i -= 0.1;
+    }, 50);
+
+    setTimeout(() => {
+      const next = (currentIndex + 1) % images.length;
+      setCurrentIndex(next);
+    }, 1000);
+
+  }, [currentIndex, height, width])
 
   useEffect(() => {
     if (!canvasRef.current) {
       return;
     }
+    console.log(images[currentIndex])
     const canvas: HTMLCanvasElement = canvasRef.current;
-    const ctx = canvas.getContext('2d');
+    const context = canvas.getContext('2d');
 
     const image = new Image();
-    image.src = 'https://cloud.githubusercontent.com/assets/4652816/12771961/5341c3c4-ca68-11e5-844c-f659831d9c00.jpg';
+    image.src = images[currentIndex];
+
     image.onload = function () {
-      if (ctx) ctx.drawImage(image, 0, 0, width, height);
+      if (context) {
+        context.drawImage(image, 0, 0, width, height);
+      }
     };
-  }, [height, width]);
+  }, [height, width, currentIndex]);
 
   useEffect(() => {
-    if (!canvasRef.current) {
-      return;
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.addEventListener('resize', handleResize)
     }
-    const canvas: HTMLCanvasElement = canvasRef.current;
-    console.log(canvas.append)
-  }, [startPaint, paint, exitPaint]);
+  }, []);
+
+  console.log(currentIndex)
 
   return (
     <div className="App">
-      <div className='box'>
+      <button
+        onClick={handleChangeImage}
+      > 그림 변경 </button>
+      <div className='box'
+        style={{
+          backgroundImage: `url(${`${images[(currentIndex+1) % images.length]}`})`,
+        }}>
       <div className='test'>
       </div>
       <canvas
@@ -142,11 +198,6 @@ const App = ({ width, height }: CanvasProps) => {
       </div>
     </div>
   );
-};
-
-App.defaultProps = {
-  width: window.innerWidth,
-  height: window.innerHeight,
 };
 
 export default App;
