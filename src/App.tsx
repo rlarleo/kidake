@@ -20,10 +20,9 @@ const App = () => {
   );
   const [isPainting, setIsPainting] = useState(false);
   const [width, setWidth] = useState<number>(window.innerWidth);
-  const [height, setHeight] = useState<number>(window.innerWidth);
+  const [height, setHeight] = useState<number>(window.innerHeight);
   const [currentIndex, setCurrentIndex] = useState(0);
   const handleResize = () => {
-    console.log(window.innerWidth);
     setWidth(window.innerWidth);
     setHeight(window.innerHeight);
   }
@@ -182,16 +181,13 @@ const App = () => {
         style={{
           backgroundImage: `url(${`${images[(currentIndex+1) % images.length]}`})`,
         }}>
-             
-      <div className='test'>
-      </div>
-      <canvas
-        style={{ background: 'transparent' }}
-        ref={canvasRef}
-        width={width}
-        height={height}
-        className="canvas"
-      />
+        <canvas
+          style={{ background: 'transparent' }}
+          ref={canvasRef}
+          width={width}
+          height={height}
+          className="canvas"
+        />
       </div>
     </div>
   );
