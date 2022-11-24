@@ -53,10 +53,10 @@ const App = () => {
     if (context) {
       context.globalCompositeOperation = 'destination-out';
       context.beginPath();
-      context.arc(newMousePosition.x, newMousePosition.y, 80, 0, 2 * Math.PI);
+      context.arc(newMousePosition.x, newMousePosition.y, 100, 0, 2 * Math.PI);
       context.fill();
 
-      context.lineWidth = 160;
+      context.lineWidth = 200;
       context.beginPath();
       context.moveTo(originalMousePosition.x, originalMousePosition.y);
       context.lineTo(newMousePosition.x, newMousePosition.y);
@@ -137,17 +137,13 @@ const App = () => {
         if(i <= 0) {
             clearInterval(inter)
             inter = null
+            const next = (currentIndex + 1) % images.length;
+            setCurrentIndex(next);
         }
 
       }
       i -= 0.1;
     }, 50);
-
-    setTimeout(() => {
-      const next = (currentIndex + 1) % images.length;
-      setCurrentIndex(next);
-    }, 1000);
-
   }, [currentIndex, height, width])
 
   useEffect(() => {
@@ -179,20 +175,21 @@ const App = () => {
 
   return (
     <div className="App">
-      <button
+         <button
         onClick={handleChangeImage}
       > 그림 변경 </button>
       <div className='box'
         style={{
           backgroundImage: `url(${`${images[(currentIndex+1) % images.length]}`})`,
         }}>
+             
       <div className='test'>
       </div>
       <canvas
         style={{ background: 'transparent' }}
         ref={canvasRef}
-        height={height}
         width={width}
+        height={height}
         className="canvas"
       />
       </div>
