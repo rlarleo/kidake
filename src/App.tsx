@@ -1,11 +1,11 @@
 import React, { useRef, useState, useCallback, useEffect } from 'react';
 import './App.css';
 import styled from 'styled-components';
-import test1 from './images/dong1.png';
-import test2 from './images/dong2.png';
-import test3 from './images/dong3.png';
-import test4 from './images/dong4.png';
-import test5 from './images/dong5.png';
+import test1 from './images/bmeks1.png';
+import test2 from './images/bmeks2.png';
+import test3 from './images/bmeks3.png';
+import test4 from './images/bmeks4.png';
+import test5 from './images/bmeks5.png';
 
 const StyledImg = styled.img`
   opacity: ${({ op }:{op: number}) => op};
