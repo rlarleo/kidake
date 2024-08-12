@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/kidake/static/css/main.a01fef8a.css",
+    "main.js": "/kidake/static/js/main.a8fe4d7a.js",
+    "static/js/787.07473dc0.chunk.js": "/kidake/static/js/787.07473dc0.chunk.js",
+    "static/media/dong2.png": "/kidake/static/media/dong2.391c464950fd3d61369f.png",
+    "static/media/dong1.png": "/kidake/static/media/dong1.d231e78b62cf46e27987.png",
+    "static/media/dong3.png": "/kidake/static/media/dong3.0fd4ddb54ffdfabe50a3.png",
+    "static/media/dong5.png": "/kidake/static/media/dong5.1ea1af86218ae36c29ba.png",
+    "static/media/dong4.png": "/kidake/static/media/dong4.33a95f72e87bb8a66584.png",
+    "index.html": "/kidake/index.html",
+    "main.a01fef8a.css.map": "/kidake/static/css/main.a01fef8a.css.map",
+    "main.a8fe4d7a.js.map": "/kidake/static/js/main.a8fe4d7a.js.map",
+    "787.07473dc0.chunk.js.map": "/kidake/static/js/787.07473dc0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a01fef8a.css",
+    "static/js/main.a8fe4d7a.js"
+  ]
+}
