@@ -1,14 +1,14 @@
 import React, { useRef, useState, useCallback, useEffect } from 'react';
 import './App.css';
 import styled from 'styled-components';
-import test1 from './images/bmeks1.png';
-import test2 from './images/bmeks2.png';
-import test3 from './images/bmeks3.png';
-import test4 from './images/bmeks4.png';
-import test5 from './images/bmeks5.png';
+import test1 from './images/dong1.png';
+import test2 from './images/dong2.png';
+import test3 from './images/dong3.png';
+import test4 from './images/dong4.png';
+import test5 from './images/dong5.png';
 
 const StyledImg = styled.img`
-  opacity: ${({ op }:{op: number}) => op};
+  opacity: ${({ op }: { op: number }) => op};
 `;
 
 interface Coordinate {
@@ -45,7 +45,7 @@ function App() {
     if (context) {
       const img = context.getImageData(0, 0, width, height);
       const transparentData = img.data.filter(e => e === 0);
-      if(transparentData.length / img.data.length  > 0.5) return true;
+      if (transparentData.length / img.data.length > 0.5) return true;
     }
     return false;
   }, [height, width]);
@@ -131,21 +131,24 @@ function App() {
     }
   };
 
-  const startPaint = useCallback((event: MouseEvent) => {
-    if(!isChange) {
-    const coordinates = getCoordinates(event);
-    if (coordinates) {
-      setIsPainting(true);
-      setMousePosition(coordinates);
-    }
-  }
-  }, [isChange]);
+  const startPaint = useCallback(
+    (event: MouseEvent) => {
+      if (!isChange) {
+        const coordinates = getCoordinates(event);
+        if (coordinates) {
+          setIsPainting(true);
+          setMousePosition(coordinates);
+        }
+      }
+    },
+    [isChange],
+  );
 
   const paint = useCallback(
     (event: MouseEvent) => {
       event.preventDefault();
       event.stopPropagation();
-      if(!isChange) {
+      if (!isChange) {
         if (isPainting) {
           const newMousePosition = getCoordinates(event);
           if (mousePosition && newMousePosition) {
@@ -154,13 +157,12 @@ function App() {
           }
         }
       }
-      
     },
     [isChange, isPainting, mousePosition],
   );
 
   const exitPaint = useCallback(() => {
-    if(isClear() && !isChange) handleChangeImage();
+    if (isClear() && !isChange) handleChangeImage();
     setIsPainting(false);
   }, [handleChangeImage, isChange, isClear]);
 
@@ -210,8 +212,19 @@ function App() {
   return (
     <div>
       <div className="box">
-        <img className="image-thumbnail" alt="" src={images[(currentIndex + 1) % images.length]} />
-        {isChange && <StyledImg className="image-thumbnail" alt="" src={chageImage} op={chageOp} /> }
+        <img
+          className="image-thumbnail"
+          alt=""
+          src={images[(currentIndex + 1) % images.length]}
+        />
+        {isChange && (
+          <StyledImg
+            className="image-thumbnail"
+            alt=""
+            src={chageImage}
+            op={chageOp}
+          />
+        )}
         <canvas
           style={{ background: 'transparent' }}
           ref={canvasRef}
