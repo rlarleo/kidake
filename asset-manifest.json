@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/kidake/static/css/main.a01fef8a.css",
-    "main.js": "/kidake/static/js/main.a8fe4d7a.js",
+    "main.js": "/kidake/static/js/main.aeeaffa8.js",
     "static/js/787.07473dc0.chunk.js": "/kidake/static/js/787.07473dc0.chunk.js",
-    "static/media/dong2.png": "/kidake/static/media/dong2.391c464950fd3d61369f.png",
-    "static/media/dong1.png": "/kidake/static/media/dong1.d231e78b62cf46e27987.png",
-    "static/media/dong3.png": "/kidake/static/media/dong3.0fd4ddb54ffdfabe50a3.png",
-    "static/media/dong5.png": "/kidake/static/media/dong5.1ea1af86218ae36c29ba.png",
-    "static/media/dong4.png": "/kidake/static/media/dong4.33a95f72e87bb8a66584.png",
+    "static/media/sample1.jpg": "/kidake/static/media/sample1.ff6cbb1620b7d54655e6.jpg",
+    "static/media/sample5.jpg": "/kidake/static/media/sample5.4f7e5976bcd62ad80df6.jpg",
+    "static/media/sample2.jpg": "/kidake/static/media/sample2.b517b8ea99e2f57f0993.jpg",
+    "static/media/sample4.jpg": "/kidake/static/media/sample4.add64130cd21ecb2b056.jpg",
+    "static/media/sample3.jpg": "/kidake/static/media/sample3.952ea67ed4e16a9555f6.jpg",
     "index.html": "/kidake/index.html",
     "main.a01fef8a.css.map": "/kidake/static/css/main.a01fef8a.css.map",
-    "main.a8fe4d7a.js.map": "/kidake/static/js/main.a8fe4d7a.js.map",
+    "main.aeeaffa8.js.map": "/kidake/static/js/main.aeeaffa8.js.map",
     "787.07473dc0.chunk.js.map": "/kidake/static/js/787.07473dc0.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a01fef8a.css",
-    "static/js/main.a8fe4d7a.js"
+    "static/js/main.aeeaffa8.js"
   ]
 }
